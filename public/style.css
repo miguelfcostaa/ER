@@ -3,6 +3,10 @@
     background-image: url('https://cdn.discordapp.com/attachments/1026128172477059122/1048574531662528565/car-interior-cockpit-view-inside-illustration_273525-170.jpg');
     background-size: 215vh;
     background-position: center;
-    height: 98vh;
+    height: 100vh;
     margin: 0;
+}
+
+body{
+    margin: 0px;
 }
