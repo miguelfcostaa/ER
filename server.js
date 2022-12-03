@@ -26,14 +26,12 @@ server.listen(port, () => {
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(function (req, res, next) {
-    res.locals.user = req.user;
-    next();
-});
 
 app.get('/', (req,res)=> {
     res.sendFile(__dirname + "/html/login.html");
 });
+
+
 
 
 app.use((req,res) => {
