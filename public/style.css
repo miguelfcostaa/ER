@@ -1,4 +1,8 @@
 
+body{
+    margin: 0px;
+}
+
 .background {
     background-image: url('https://cdn.discordapp.com/attachments/1026128172477059122/1049340814272241865/IMG_7473.jpg');
     background-size: 215vh;
@@ -7,6 +11,13 @@
     margin: 0;
 }
 
-body{
-    margin: 0px;
+.ecraPrincipal {
+    position: absolute;
+    top: 460px;
+    left: 775px;  
+    opacity: 0; 
+}
+
+.ecraPrincipal:hover {
+    opacity: 1; 
 }
