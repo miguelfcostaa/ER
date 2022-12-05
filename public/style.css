@@ -90,3 +90,47 @@ body{
 .botaoPHONE:hover {
     opacity: 1; 
 }
+
+.botaoChamada {
+    position: absolute;
+    right: 384px;
+    bottom: 255px;
+    opacity: 0;
+}
+
+.botaoChamada:hover {
+    opacity: 1; 
+}
+
+.botaoVoice {
+    position: absolute;
+    right: 348px;
+    bottom: 145px;
+    opacity: 0;
+}
+
+.botaoVoice:hover {
+    opacity: 1; 
+}
+
+.botaoSetaCima {
+    position: absolute;
+    right: 243px;
+    bottom: 235px;
+    opacity: 0;
+}
+
+.botaoSetaCima:hover {
+    opacity: 1; 
+}
+
+.botaoSetaBaixo {
+    position: absolute;
+    right: 205px;
+    bottom: 155px;
+    opacity: 0;
+}
+
+.botaoSetaBaixo:hover {
+    opacity: 1; 
+}
