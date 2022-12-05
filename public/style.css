@@ -11,9 +11,17 @@ body{
     margin: 0;
 }
 
+.background_ecraPrincipal {
+    background-image: url('https://cdn.discordapp.com/attachments/1026128172477059122/1049374657645654066/ecraPrincipal_Zoom_ER.png');
+    background-size: 215vh;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+
 .ecraPrincipal {
     position: absolute;
-    top: 460px;
+    top: 480px;
     left: 775px;  
     opacity: 0; 
 }
@@ -28,8 +36,8 @@ body{
 
 .ecraVolante {
     position: absolute;
-    top: 380px;
-    left: 315px;  
+    top: 400px;
+    left: 290px;  
     opacity: 0; 
 }
 
@@ -39,4 +47,28 @@ body{
 
 .ecraVolante:not(:disabled):not(.disabled) {
     cursor: pointer;
+}
+
+.botaoMEDIA {
+    position: absolute;
+    top: 323px;
+    left: 375px; 
+    transform: rotate(-1deg);
+    opacity: 0;
+}
+
+.botaoMEDIA:hover {
+    opacity: 1; 
+}
+
+.botaoPHONE {
+    position: absolute;
+    top: 392px;
+    left: 375px; 
+    transform: rotate(-1deg);
+    opacity: 0;
+}
+
+.botaoPHONE:hover {
+    opacity: 1; 
 }
