@@ -19,6 +19,24 @@ body{
     margin: 0;
 }
 
+.background_ecraVolante {
+    background-image: url('https://cdn.discordapp.com/attachments/1026128172477059122/1049438878492278794/ecraVolant_Zoom.jpg');
+    background-size: 210vh;
+    background-position: center;
+    height: 80vh;
+    margin: 0;
+}
+    
+.goBack {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
+
+.goBack:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
 .ecraPrincipal {
     position: absolute;
     top: 480px;
