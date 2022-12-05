@@ -21,3 +21,14 @@ body{
 .ecraPrincipal:hover {
     opacity: 1; 
 }
+
+.ecraVolante {
+    position: absolute;
+    top: 380px;
+    left: 315px;  
+    opacity: 0; 
+}
+
+.ecraVolante:hover {
+    opacity: 1; 
+}
