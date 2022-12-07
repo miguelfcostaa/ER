@@ -19,14 +19,14 @@ const ecraPrincipalPhone_get = (req,res) =>{
 const ecraPrincipalSetup_get = (req,res) =>{
     res.render('ecraPrincipalSetup');
 };
-
+ecraPrincipalSetupCompleto_get
 
 const ecraVolante_get = (req,res) =>{  
     res.render('ecraVolante');
 };
 
 const ecraPrincipal_post = (req,res) =>{  
-    const{media,phone} = req.body;
+    const{phone} = req.body;
     console.log('BODY: ', req.body);
     
     try{

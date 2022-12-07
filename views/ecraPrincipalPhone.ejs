@@ -15,31 +15,34 @@
     width='100px' height='100px' onclick="location.href='/'">
 
     <form id="form-sistema">
-    <button id = "media" value="one"><img src="https://cdn.discordapp.com/attachments/707687832239603863/1049383669934071868/botao_MEDIA.png" class="botaoMEDIA"
-    width="150px" height="56px" ></button>
-    
     <button id = "phone" value="two"><img src="https://cdn.discordapp.com/attachments/707687832239603863/1049385285810671616/botao_PHONE.png" class="botaoPHONE"
     width="150px" height="56px" ></button>
-    
     </form>
 
-    <svg width="400" height="110">
-        <rect width="1000" height="1000" style="fill:rgb(255,255,255)" />
-    </svg>
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active">
+          Cras justo odio
+        </button>
+        <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+        <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+        <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+        <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+      </div>
+
+    
     
     <script>
         const form = document.getElementById('form-sistema');
         
         form.addEventListener('submit', async(e) =>{
             e.preventDefault();
-            const media = form.media.value;
             const phone = form.phone.value;
-            console.log('MEDIA: ', media,'PHONE: ', phone);
+            console.log('PHONE: ', phone);
 
             try{
-                const res = await fetch('http://localhost:3000/ecraPrincipal',{
+                const res = await fetch('http://localhost:3000/ecraPrincipal/phone',{
                     method: 'POST',
-                    body: JSON.stringify({media,phone}),
+                    body: JSON.stringify({phone}),
                     headers:{'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
