@@ -113,6 +113,17 @@ body{
     opacity: 1; 
 }
 
+.botaoSETUP {
+    position: absolute;
+    right: 354px;
+    top: 232px;
+    opacity: 0;
+}
+
+.botaoSETUP:hover {
+    opacity: 1; 
+}
+
 .botaoSetaCima {
     position: absolute;
     right: 243px;
