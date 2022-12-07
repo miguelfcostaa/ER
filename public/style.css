@@ -170,6 +170,17 @@ body{
     opacity: 1; 
 }
 
+.botaoPOWER {
+    position: absolute;
+    left: 330px;
+    bottom: 160px;
+    opacity: 0;
+}
+
+.botaoPOWER:hover {
+    opacity: 1;
+}
+
 #svgelem {
     margin-left:50px;
     margin-right:auto;
@@ -177,9 +188,10 @@ body{
     text-align: center;
 }
 
-.ecraSetup {
+.ecra {
     position: absolute;
     right: 630px;
     top: 250px;
 
 }
+
