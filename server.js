@@ -1,9 +1,10 @@
-
 const http = require('http');
 const express = require('express');
 const session = require("express-session");
-
-
+const bodyParser = require('body-parser');
+const routes = require('./routes/routes')
+const cookieParser = require('cookie-parser');
+const morgan = require ('morgan');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,20 +17,20 @@ server.listen(port, () => {
 })
 
 app.use(express.static(__dirname + '/public'));
+var urlencodedParser = bodyParser.urlencoded({extended:false});
+app.use(urlencodedParser);
+app.use(express.json());
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
+
+app.set('view engine' , 'ejs');
 
 app.get('/', (req,res)=> {
-    res.sendFile(__dirname + "/html/main.html");
+    res.render('main');
 });
 
-app.get('/ecraPrincipal', (req,res)=> {
-    res.sendFile(__dirname + "/html/ecraPrincipal.html");
-});
-
-app.get('/ecraVolante', (req,res)=> {
-    res.sendFile(__dirname + "/html/ecraVolante.html");
-});
-
+app.use(routes);
 
 app.use((req,res) => {
     res.status(404).render('404');
