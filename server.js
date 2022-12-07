@@ -10,7 +10,6 @@ const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
 
-
 server.listen(port, () => {
     console.log(`Application is running at: http://localhost:${port}`);
     console.log('Connected!');

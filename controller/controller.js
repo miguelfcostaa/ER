@@ -24,7 +24,6 @@ const ecraPrincipalPhone_get = (req,res) =>{
     res.render('ecraPrincipalPhone');
 };
 
-ecraPrincipalGps_get
 const ecraPrincipalSetup_get = (req,res) =>{
     res.render('ecraPrincipalSetup');
 };
@@ -33,13 +32,13 @@ const ecraPrincipalSetupCompleto_get = (req,res) =>{
     res.render('ecraPrincipalSetupCompleto');
 };
 
-const ecraPrincipalGps_get = (req,res) =>{  
+const ecraPrincipalGPS_get = (req,res) =>{  
     res.render('ecraPrincipalGPS');
 };
 
 const ecraPrincipalCar_get = (req,res) =>{  
     res.render('ecraPrincipalCar');
-};ecraPrincipalMenu_get
+};
 
 const ecraPrincipalMenu_get = (req,res) =>{  
     res.render('ecraPrincipalMenu');
@@ -77,9 +76,9 @@ module.exports = {
     ecraPrincipalMedia_get,
     ecraPrincipalPhone_get,
     ecraPrincipalSetup_get,
+    ecraPrincipalGPS_get,
     ecraPrincipalCar_get,
     ecraPrincipalMenu_get,
-    ecraPrincipalSetupCompleto_get,
-    ecraPrincipalGps_get
+    ecraPrincipalSetupCompleto_get
 
 }
