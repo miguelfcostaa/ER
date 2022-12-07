@@ -151,4 +151,11 @@ body{
     margin-right:auto;
     display:block;
     text-align: center;
- }
+}
+
+.ecraSetup {
+    position: absolute;
+    right: 630px;
+    top: 250px;
+
+}

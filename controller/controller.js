@@ -19,7 +19,10 @@ const ecraPrincipalPhone_get = (req,res) =>{
 const ecraPrincipalSetup_get = (req,res) =>{
     res.render('ecraPrincipalSetup');
 };
-ecraPrincipalSetupCompleto_get
+
+const ecraPrincipalSetupCompleto_get = (req,res) =>{
+    res.render('ecraPrincipalSetupCompleto');
+};
 
 const ecraVolante_get = (req,res) =>{  
     res.render('ecraVolante');
@@ -50,6 +53,7 @@ module.exports = {
     ecraVolante_get,
     ecraPrincipal_post,
     ecraPrincipalPhone_get,
-    ecraPrincipalSetup_get
+    ecraPrincipalSetup_get,
+    ecraPrincipalSetupCompleto_get
 
 }
