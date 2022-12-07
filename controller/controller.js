@@ -12,6 +12,10 @@ const ecraPrincipal_get = (req,res) =>{
     res.render('ecraPrincipal');
 };
 
+const ecraPrincipalSetup_get = (req,res) =>{
+    res.render('ecraPrincipalSetup');
+};
+
 const ecraPrincipalPhone_get = (req,res) =>{  
     res.render('ecraPrincipalPhone');
 };
