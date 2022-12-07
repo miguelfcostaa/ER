@@ -181,6 +181,18 @@ body{
     opacity: 1;
 }
 
+.botaoCAR {
+    position: absolute;
+    right: 350px;
+    top: 371px;
+    opacity: 0;
+}
+
+.botaoCAR:hover {
+    opacity: 1;
+}
+
+
 #svgelem {
     margin-left:50px;
     margin-right:auto;
