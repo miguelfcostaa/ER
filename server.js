@@ -22,6 +22,7 @@ app.use(urlencodedParser);
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 
 app.set('view engine' , 'ejs');

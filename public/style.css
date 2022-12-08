@@ -207,3 +207,28 @@ body{
 
 }
 
+.ecra-branco {
+    position: absolute;
+    right: 515px;
+    top: 198px;
+    background: black;
+    padding: 15px;
+    border-radius: 3px;
+    height: 310px;
+    width: 500px;
+    
+}
+
+.list-group{
+    height:250px; 
+    width:100%;
+    overflow:hidden; overflow-y:scroll;
+}
+
+.form-check-label{
+    color: white;
+}
+
+.lead{
+    color: white;
+}
