@@ -1,5 +1,6 @@
 //const Math = require('Math');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const maxAge = 3 * 24 * 60 * 60; //3 dias em segundos
 const createToken = (id) =>{
@@ -7,6 +8,7 @@ const createToken = (id) =>{
         expiresIn: maxAge
     });
 };
+
 
 const ecraPrincipal_get = (req,res) =>{  
     res.render('ecraPrincipal');
@@ -48,22 +50,48 @@ const ecraVolante_get = (req,res) =>{
     res.render('ecraVolante');
 };
 
-const ecraPrincipal_post = (req,res) =>{  
-    const{phone} = req.body;
+
+const ecraPrincipalPhone_post = (req,res) =>{  
+    const{user} = req.body;
     console.log('BODY: ', req.body);
+
+    //res.cookie('user', Susan);
+    //res.send('User connected!');
     
     try{
-        var num = Math.random() * 10;
-        const token = createToken(num);
         console.log('BODY: ', req.body);
-        console.log('TOKEN: ', token);
-        res.cookie('jwt',token,{httpOnly: true,maxAge:maxAge * 1000});
-        res.status(201).json({option:num});
+        res.cookie('user',user);
+        res.status(201).json({user:user});
+        //res.send('User connected!');
     }catch(err){
         console.log(err);
     }
 };
 
+const ecraPrincipalContactos_get = (req,res) => {
+    const cookies = req.cookies;
+    console.log('COOKIE: ',cookies);
+    res.render('ecraPrincipalContactos',{user:cookies});
+}
+
+const ecraPrincipalContactos_post = (req,res) =>{
+    const {user} = req.body;
+    res.cookie('contacto',user);
+    res.status(201).json({user:user});
+}
+
+const ecraChamada_get = (req,res) =>{
+    const contacto = req.cookies;
+    console.log('CONTACTOCOOKIE: ', contacto);
+    res.render('chamada',{user:contacto});
+}
+
+const ecraChamada_post = (req,res) =>{
+    const {end} = req.body;
+    console.log('END: ', end);
+    res.cookie('contacto','',{maxAge: 1});
+    res.redirect('/ecraPrincipal/contactos');
+}
 const ecraVolante_post = (req,res) =>{  
     res.render('ecraVolante');
 };
@@ -71,14 +99,18 @@ const ecraVolante_post = (req,res) =>{
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
-    ecraPrincipal_post,
     ecraPrincipalRadio_get,
     ecraPrincipalMedia_get,
+    ecraPrincipalPhone_post,
     ecraPrincipalPhone_get,
     ecraPrincipalSetup_get,
     ecraPrincipalGPS_get,
     ecraPrincipalCar_get,
     ecraPrincipalMenu_get,
-    ecraPrincipalSetupCompleto_get
+    ecraPrincipalSetupCompleto_get,
+    ecraPrincipalContactos_get,
+    ecraChamada_get,
+    ecraPrincipalContactos_post,
+    ecraChamada_post
 
 }

@@ -10,6 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 3000;
 
+
 server.listen(port, () => {
     console.log(`Application is running at: http://localhost:${port}`);
     console.log('Connected!');
@@ -21,6 +22,7 @@ app.use(urlencodedParser);
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 
 app.set('view engine' , 'ejs');
