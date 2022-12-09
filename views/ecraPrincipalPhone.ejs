@@ -45,12 +45,15 @@
     </form>
 
     <div class="ecra-branco">
-        <% if(user.user!=null){ %>
+        <% if(user.user!=null && user.contacto != null){ %>
+            <h2 class="lead">Welcome, <%=user.user%></h2>
+            <h1> EM CHAMADA</h1>
+            <button type="submit" onclick="location.href='/ecraPrincipal/chamada'">Open Call</button>
+        <% }else if(user.user!=null){ %>
             <h2 class="lead">Welcome, <%=user.user%></h2>
             <button type="submit" onclick="location.href='/ecraPrincipal/contactos'">Make a Call</button>
             <button type="submit" onclick="location.href='/ecraPrincipal/endSession'">End Session</button>
-
-        <% }else{ %>
+        <% }else{ %>    
 
         <h2 class="lead">Conect to which device?</h2>
         <div class="list-group">
@@ -83,18 +86,14 @@
     
     <script>
         const form = document.getElementById('form-sistema-user');
-        const form = document.getElementById('form-sistema-user');
         form.addEventListener('submit', async(e) =>{
             e.preventDefault();
-            const user = document.querySelector('input[name="user"]:checked').value;
-            console.log('CONTACTO: ', user);
             const user = document.querySelector('input[name="user"]:checked').value;
             console.log('CONTACTO: ', user);
 
             try{
                 const res = await fetch('http://localhost:3000/ecraPrincipal/phone',{
                     method: 'POST',
-                    body: JSON.stringify({user}),
                     body: JSON.stringify({user}),
                     headers:{'Content-Type': 'application/json'}
                 });
@@ -103,7 +102,6 @@
             }catch(err){
                 console.log(err);
             }
-            location.assign('/ecraPrincipal/contactos');
             location.assign('/ecraPrincipal/contactos');
 
         });

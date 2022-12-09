@@ -1,7 +1,6 @@
 //const Math = require('Math');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const cookieParser = require('cookie-parser');
 
 const maxAge = 3 * 24 * 60 * 60; //3 dias em segundos
 const createToken = (id) =>{
@@ -111,7 +110,8 @@ const endSession_post = (req,res) => {
 }
 
 const voiceRecognition_get=(req,res) => {
-    res.render('voiceRecognition');
+    const user = req.cookies;
+    res.render('voiceRecognition',{user:user});
 }
 
 const voiceRecognition_post = (req,res) => {
@@ -123,8 +123,10 @@ const voiceRecognition_post = (req,res) => {
     if(myArray[0] == 'call'){
         if(user.user!=undefined){
         res.cookie('contacto',myArray[1]);
+        res.cookie('acao', myArray[0]);
         //res.status(201).json({user:myArray[1]});
-        res.redirect(301, 'http://localhost:3000/ecraPrincipal')
+        //res.redirect(301, 'http://localhost:3000/ecraVolante')
+        res.redirect('/ecraVolante')
         }
         else if(user.user == undefined){
             //res.json('User must be connected!');
@@ -132,13 +134,35 @@ const voiceRecognition_post = (req,res) => {
             res.redirect('/ecraVolante');
             
         }
+    }else if(myArray[0] == 'GPS'){
+        console.log('Entrou GPS');
+        res.cookie('acao', myArray[0]);
+        res.redirect('/ecraVolante');
+    }else if(myArray[0] == 'radio'){
+        res.cookie('acao','radio');
     }
+    
 }
 
 const mustBeConnected_get = (req,res) => {
     res.render('mustBeConnected');
 }
 
+
+const ecraPrincipalGps_get = (req,res) => {
+    res.render('ecraPrincipalGPS');
+}
+
+const ecraVolanteGPS_get = (req,res) => {
+    res.render('ecraVolanteGPS');
+}
+
+const ecraVolanteGPS_post = (req,res) => {
+    const {destino,rotaU} = req.body;
+    console.log('DESTINO: ', destino);
+    console.log('Rota: ', rotaU);
+
+}
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
@@ -158,6 +182,8 @@ module.exports = {
     endSession_get,
     voiceRecognition_get,
     voiceRecognition_post,
-    mustBeConnected_get
+    mustBeConnected_get,
+    ecraVolanteGPS_get,
+    ecraVolanteGPS_post
 
 }

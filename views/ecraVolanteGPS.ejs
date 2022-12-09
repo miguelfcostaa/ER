@@ -23,7 +23,7 @@
     width="170px" height="110px" onclick="location.href='/ecraVolante/'"> <!--falta preencher o que faz ao clicar na seta para baixo-->
 
     <div class="ecra-listenning">
-        <h3 class="lead">Listenning...</h3>
+        <h4 class="lead">Where would you like to go?</h4>
     </div>
 
 
@@ -36,71 +36,76 @@
         recognition.continuous = false;
         recognition.lang = 'en-US';
 
+        var recognizing = true;
+
+        recognition.onstart = function () {
+            recognizing = true;
+        };
+
+        recognition.onend = function () {
+            recognizing = false;
+        };
+
         recognition.addEventListener('result', (e) =>{
-            const command = Array.from(e.results)
+            const destino = Array.from(e.results)
                 .map(result => result[0])
                 .map(result => result.transcript)
                 .join('');
 
-            console.log(command);
+            console.log('DESTINO: ', destino);
+
+            recognition.stop();
+            setTimeout(function(){ recognition.start(); }, 4000);
+
+            const rotaU = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+
+            console.log('ROTAU: ', rotaU);    
+
+            })        
         
 
        if(e.results[0].isFinal){
         //if(command.includes('call')){
             p = document.createElement('p');
-            p.classList.add('action');
-            p.innerText = command;
+            p.classList.add('lead');
+            p.innerText = 'Answer: ' + destino;
             ecra.appendChild(p);
-        //}
+            rota = document.createElement('p');
+            rota.classList.add('lead');
+            rota.innerText = 'Route:fast, economic or less trafic?'
+            ecra.appendChild(rota);
 
+           
+
+            console.log('DESTINO: ',destino);
+            console.log('ROTAU: ',rotaU);
+            
+        }
+            recognition.stop();
+
+        
+       //}
+   
+
+        recognition.start();
+
+        if( recognizing == false ){
         try{
-                    const res = fetch('http://localhost:3000/ecraVolante/voiceRecognition',{
+                    const res = fetch('http://localhost:3000/ecraVolante/ecraVolanteGPS',{
                         method: 'POST',
-                        body: JSON.stringify({command}),
+                        body: JSON.stringify({destino,rotaU}),
                         headers:{'Content-Type': 'application/json'}
                     });
                 }catch(err){
                     console.log(err);
                 }
                 console.log('VOLTEI');
-                location.assign('/ecraVolante');
+        }
 
-                const cookieValueUser = document.cookie
-                    .split('; ')
-                    .find((row) => row.startsWith('user='))
-                    ?.split('=')[1];
-                
-
-                const cookieValueContacto = document.cookie
-                    .split('; ')
-                    .find((row) => row.startsWith('contacto='))
-                    ?.split('=')[1];
-                
-
-                const cookieValueUserAcao = document.cookie
-                    .split('; ')
-                    .find((row) => row.startsWith('acao='))
-                    ?.split('=')[1];
-                
-
-                console.log('COOKIE User TEST: ',cookieValueUser);
-                console.log('COOKIE Contacto TEST: ',cookieValueContacto);
-                console.log('COOKIE Gps TEST: ',cookieValueUserAcao);
-                
-                if(cookieValueUserAcao == 'call'){
-                    if(cookieValueUser != undefined){
-                        location.assign('/ecraVolante');
-                    }else if(cookieValueUser == undefined){
-                        location.assign('/ecraVolante/mustBeConnected');
-                    }
-                }
-                if(cookieValueUserAcao == 'GPS'){
-                    location.assign('/ecraVolante/ecraVolanteGPS');
-                }
-       }
-    })
-
-        recognition.start();
+        
     </script>
 
 </body>
