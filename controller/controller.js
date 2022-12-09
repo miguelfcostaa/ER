@@ -1,7 +1,6 @@
 //const Math = require('Math');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const cookieParser = require('cookie-parser');
 
 const maxAge = 3 * 24 * 60 * 60; //3 dias em segundos
 const createToken = (id) =>{
@@ -142,6 +141,8 @@ const mustBeConnected_get = (req,res) => {
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
+    ecraPrincipalRadio_get,
+    ecraPrincipalMedia_get,
     ecraPrincipalPhone_post,
     ecraPrincipalPhone_get,
     ecraPrincipalSetup_get,
@@ -149,7 +150,6 @@ module.exports = {
     ecraPrincipalCar_get,
     ecraPrincipalMenu_get,
     ecraPrincipalSetupCompleto_get,
-    ecraPrincipalGps_get,
     ecraPrincipalContactos_get,
     ecraChamada_get,
     ecraPrincipalContactos_post,
