@@ -1,6 +1,7 @@
 //const Math = require('Math');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const maxAge = 3 * 24 * 60 * 60; //3 dias em segundos
 const createToken = (id) =>{
@@ -9,8 +10,17 @@ const createToken = (id) =>{
     });
 };
 
+
 const ecraPrincipal_get = (req,res) =>{  
     res.render('ecraPrincipal');
+};
+
+const ecraPrincipalRadio_get = (req,res) =>{  
+    res.render('ecraPrincipalRadio');
+};
+
+const ecraPrincipalMedia_get = (req,res) =>{  
+    res.render('ecraPrincipalMedia');
 };
 
 const ecraPrincipalPhone_get = (req,res) =>{  
@@ -19,16 +29,24 @@ const ecraPrincipalPhone_get = (req,res) =>{
     res.render('ecraPrincipalPhone',{user:cookies});
 };
 
-const ecraPrincipalGps_get = (req,res) =>{  
-    res.render('ecraPrincipalGPS');
-};
-ecraPrincipalGps_get
 const ecraPrincipalSetup_get = (req,res) =>{
     res.render('ecraPrincipalSetup');
 };
 
 const ecraPrincipalSetupCompleto_get = (req,res) =>{
     res.render('ecraPrincipalSetupCompleto');
+};
+
+const ecraPrincipalGPS_get = (req,res) =>{  
+    res.render('ecraPrincipalGPS');
+};
+
+const ecraPrincipalCar_get = (req,res) =>{  
+    res.render('ecraPrincipalCar');
+};
+
+const ecraPrincipalMenu_get = (req,res) =>{  
+    res.render('ecraPrincipalMenu');
 };
 
 const ecraVolante_get = (req,res) =>{  
@@ -41,6 +59,9 @@ const ecraPrincipalPhone_post = (req,res) =>{
     console.log('BODY: ', req.body);    
     try{
         console.log('BODY: ', req.body);
+        res.cookie('user',user);
+        res.status(201).json({user:user});
+        //res.send('User connected!');
         res.cookie('user',user);
         res.status(201).json({user:user});
         //res.send('User connected!');
@@ -124,6 +145,9 @@ module.exports = {
     ecraPrincipalPhone_post,
     ecraPrincipalPhone_get,
     ecraPrincipalSetup_get,
+    ecraPrincipalGPS_get,
+    ecraPrincipalCar_get,
+    ecraPrincipalMenu_get,
     ecraPrincipalSetupCompleto_get,
     ecraPrincipalGps_get,
     ecraPrincipalContactos_get,
