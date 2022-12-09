@@ -24,6 +24,13 @@
     </form>
 
     <div class="ecra-branco">
+        <% if(user.user!=null){ %>
+            <h2 class="lead">Welcome, <%=user.user%></h2>
+            <button type="submit" onclick="location.href='/ecraPrincipal/contactos'">Make a Call</button>
+            <button type="submit" onclick="location.href='/ecraPrincipal/endSession'">End Session</button>
+
+        <% }else{ %>
+
         <h2 class="lead">Conect to which device?</h2>
         <div class="list-group">
         <form id="form-sistema-user">
@@ -49,6 +56,7 @@
         </form>
  
           </div>
+          <% } %>
         
     </div>
     

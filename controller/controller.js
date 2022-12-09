@@ -14,7 +14,9 @@ const ecraPrincipal_get = (req,res) =>{
 };
 
 const ecraPrincipalPhone_get = (req,res) =>{  
-    res.render('ecraPrincipalPhone');
+    const cookies = req.cookies;
+    console.log('COOKIE: ',cookies);
+    res.render('ecraPrincipalPhone',{user:cookies});
 };
 
 const ecraPrincipalGps_get = (req,res) =>{  
@@ -36,11 +38,7 @@ const ecraVolante_get = (req,res) =>{
 
 const ecraPrincipalPhone_post = (req,res) =>{  
     const{user} = req.body;
-    console.log('BODY: ', req.body);
-
-    //res.cookie('user', Susan);
-    //res.send('User connected!');
-    
+    console.log('BODY: ', req.body);    
     try{
         console.log('BODY: ', req.body);
         res.cookie('user',user);
@@ -53,7 +51,7 @@ const ecraPrincipalPhone_post = (req,res) =>{
 
 const ecraPrincipalContactos_get = (req,res) => {
     const cookies = req.cookies;
-    console.log('COOKIE: ',cookies);
+    console.log('COOKIE UP: ',cookies);
     res.render('ecraPrincipalContactos',{user:cookies});
 }
 
@@ -80,6 +78,46 @@ const ecraVolante_post = (req,res) =>{
     res.render('ecraVolante');
 };
 
+const endSession_get = (req,res) =>{
+    const user = req.cookies;
+    console.log('EndUser: ', user);
+    res.render('endSession',{user:user});
+}
+
+const endSession_post = (req,res) => {
+    res.cookie('user','',{maxAge: 1});
+    res.redirect('/ecraPrincipal');
+}
+
+const voiceRecognition_get=(req,res) => {
+    res.render('voiceRecognition');
+}
+
+const voiceRecognition_post = (req,res) => {
+    const user = req.cookies;
+    const{command} = req.body;
+    const myArray = command.split(" ");
+    console.log('COMANDO: ', myArray[0]);
+    console.log('USER: ', user.user);
+    if(myArray[0] == 'call'){
+        if(user.user!=undefined){
+        res.cookie('contacto',myArray[1]);
+        //res.status(201).json({user:myArray[1]});
+        res.redirect(301, 'http://localhost:3000/ecraPrincipal')
+        }
+        else if(user.user == undefined){
+            //res.json('User must be connected!');
+            console.log('ERRO:');
+            res.redirect('/ecraVolante');
+            
+        }
+    }
+}
+
+const mustBeConnected_get = (req,res) => {
+    res.render('mustBeConnected');
+}
+
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
@@ -91,6 +129,11 @@ module.exports = {
     ecraPrincipalContactos_get,
     ecraChamada_get,
     ecraPrincipalContactos_post,
-    ecraChamada_post
+    ecraChamada_post,
+    endSession_post,
+    endSession_get,
+    voiceRecognition_get,
+    voiceRecognition_post,
+    mustBeConnected_get
 
 }

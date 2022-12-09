@@ -16,7 +16,7 @@
 
     <body class="background_ecraPrincipal">
         <img src='https://cdn.discordapp.com/attachments/707687832239603863/1049440866693025933/goback.png' class="goBack" 
-        width='100px' height='100px' onclick="location.href='/'">
+        width='100px' height='100px' onclick="location.href='/ecraPrincipal/phone'">
     
         <form id="form-sistema">
         <button id = "phone" value="two"><img src="https://cdn.discordapp.com/attachments/707687832239603863/1049385285810671616/botao_PHONE.png" class="botaoPHONE"
@@ -27,6 +27,7 @@
         
         <% if(user){ %>
             <h2 class="lead">Welcome, <%=user.user%></h2>
+            
         <% } %>
         <form id="form-chamada">
         <ul class="list-group">
