@@ -219,25 +219,25 @@ body{
 
 .ecra-branco {
     position: absolute;
-    right: 515px;
-    top: 198px;
+    right: 630px;
+    top: 250px;
     background: black;
     padding: 15px;
     border-radius: 3px;
-    height: 310px;
-    width: 500px;
+    height: 420px;
+    width: 650px;
     
 }
 
-.ecra-listenning{
+.ecra-volante {
     position: absolute;
-    right: 700px;
-    top: 100px;
+    right: 890px;
+    top: 145px;
     background: black;
     padding: 15px;
     border-radius: 3px;
     height: 160px;
-    width: 100px;
+    width: 120px;
 }
 
 .list-group{

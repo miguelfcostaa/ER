@@ -166,6 +166,8 @@ const ecraVolanteGPS_post = (req,res) => {
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
+    ecraPrincipalRadio_get,
+    ecraPrincipalMedia_get,
     ecraPrincipalPhone_post,
     ecraPrincipalPhone_get,
     ecraPrincipalSetup_get,
@@ -173,7 +175,6 @@ module.exports = {
     ecraPrincipalCar_get,
     ecraPrincipalMenu_get,
     ecraPrincipalSetupCompleto_get,
-    ecraPrincipalGps_get,
     ecraPrincipalContactos_get,
     ecraChamada_get,
     ecraPrincipalContactos_post,
