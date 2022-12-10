@@ -4,8 +4,8 @@ const controller = require('../controller/controller');
 
 router.get('/ecraVolante', controller.ecraVolante_get);
 router.get('/ecraPrincipal',controller.ecraPrincipal_get);
-//router.get('/ecraPrincipal/radio',controller.ecraPrincipalRadio_get);
-//router.get('/ecraPrincipal/media',controller.ecraPrincipalMedia_get);
+router.get('/ecraPrincipal/radio',controller.ecraPrincipalRadio_get);
+router.get('/ecraPrincipal/media',controller.ecraPrincipalMedia_get);
 router.get('/ecraPrincipal/gps',controller.ecraPrincipalGPS_get);
 router.get('/ecraPrincipal/phone',controller.ecraPrincipalPhone_get);
 router.post('/ecraPrincipal/phone',controller.ecraPrincipalPhone_post);
@@ -30,7 +30,8 @@ router.post('/ecraVolante/voiceRecognition', controller.voiceRecognition_post);
 router.get('/ecraVolante/mustBeConnected', controller.mustBeConnected_get);
 router.get('/ecraVolante/ecraVolanteGPS',controller.ecraVolanteGPS_get);
 router.post('/ecraVolante/ecraVolanteGPS',controller.ecraVolanteGPS_post);
-
+router.get('/ecraPrincipal/wifi',controller.ecraPrincipalWifi_get);
+router.post('/ecraPrincipal/wifi',controller.ecraPrincipalWifi_post);
 
 module.exports = router;
 

@@ -29,7 +29,8 @@ const ecraPrincipalPhone_get = (req,res) =>{
 };
 
 const ecraPrincipalSetup_get = (req,res) =>{
-    res.render('ecraPrincipalSetup');
+    const wifi = req.cookies;
+    res.render('ecraPrincipalSetup',{wifi:wifi});
 };
 
 const ecraPrincipalSetupCompleto_get = (req,res) =>{
@@ -163,6 +164,25 @@ const ecraVolanteGPS_post = (req,res) => {
     console.log('Rota: ', rotaU);
 
 }
+
+const ecraPrincipalWifi_get = (req,res) => {
+    const wifi = req.cookies;
+    res.render('ecraPrincipalWifi',{wifi:wifi});
+}
+
+const ecraPrincipalWifi_post = (req, res) => {
+    const{amount} = req.body;
+    console.log('COMANDO: ', amount);
+    if(amount == 'start'){
+        res.cookie('wifi','ligado');
+        res.redirect('/ecraPrincipal/wifi');
+    }else if(amount == 'end'){
+        res.cookie('wifi','',{maxAge:1});
+        res.redirect('/ecraPrincipal/wifi');
+    }    
+
+}
+
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
@@ -185,6 +205,8 @@ module.exports = {
     voiceRecognition_post,
     mustBeConnected_get,
     ecraVolanteGPS_get,
-    ecraVolanteGPS_post
+    ecraVolanteGPS_post,
+    ecraPrincipalWifi_get,
+    ecraPrincipalWifi_post
 
 }

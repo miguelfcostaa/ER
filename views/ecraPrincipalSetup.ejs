@@ -30,12 +30,32 @@
     width="200px" height="65px" onclick="location.href='/ecraPrincipal/car'">
     <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050123259888275566/botao_MENU.png" class="botaoMENU"
     width="217px" height="110px" onclick="location.href='/ecraPrincipal/menu'">
+
+    
     <div class="ecra">
+        <%if(wifi.wifi){%>
         <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050062781279391774/updateWait.png"
         width="680px" height="427px" onclick="location.href='/ecraPrincipal/setup/completo'">
+        <%}else{%>
+            <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050062781279391774/updateWait.png"
+            width="680px" height="427px" id="img" onclick='storeVar(this)'>
+        <%}%>    
         
     </div>
 
+    <script>
+        const ecra = document.querySelector('.ecra');
+        
+        function storeVar(el) {
+            document.getElementById('img').remove();
+            p = document.createElement('p');
+            p.classList.add('action');
+            p.innerText = 'You need to be connected to the wifi to update!';
+            ecra.appendChild(p);
+
+        } 
+
+    </script>
 
 
 </body>
