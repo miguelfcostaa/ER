@@ -268,6 +268,11 @@ const ecraPrincipalCalendario_get = (req,res) =>{
     res.render('ecraPrincipalCalendario');
 }
 
+const ecraMarchaAtras_get = (req,res) => {
+    res.render('ecraMarchaAtras');
+}
+
+
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
@@ -296,6 +301,7 @@ module.exports = {
     ecraVolanteCheck_get,
     triggerChamada_get,
     triggerChamada_post,
-    ecraPrincipalCalendario_get
+    ecraPrincipalCalendario_get,
+    ecraMarchaAtras_get
 
 }
