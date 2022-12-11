@@ -260,6 +260,13 @@ body{
 
 .lead{
     color: white;
+    font-size: 2.2rem ;
+}
+
+#destiny {
+    height: 420px;
+    width: 650px;
+    padding-left: 100px;
 }
 
 .calendar_default_main{

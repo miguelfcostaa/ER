@@ -13,8 +13,8 @@
 <body class="background_ecraPrincipal">
     <img src='https://cdn.discordapp.com/attachments/707687832239603863/1049440866693025933/goback.png' class="goBack" 
     width='100px' height='100px' onclick="location.href='/'">
-    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050114971599642664/botaoPOWER.png" class="botaoPOWER"
-    width="200px" height="200px" onclick="location.href='/'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1051632943304552498/botao_WIFI.png" class="botaoWIFI"
+    width="187px" height="150px" onclick="location.href='/ecraPrincipal/wifi'">
 
     <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050080688017248256/botao_RADIO.png" class="botaoRADIO"
     width="158px" height="88px" onclick="location.href='/ecraPrincipal/radio'">
@@ -34,30 +34,25 @@
 
     <div class="ecra">
         <% if(user.destino){ %>    
-            <p class="lead" style="position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -50%);">Current destination: <%=user.destino%></p>
-            <p class="lead" style="position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);">Current Route: <%=user.rota%></p>
+            <p class="lead">Current destination: <%=user.destino%></p>
+            <p class="lead">Current Route: <%=user.rota%></p>
         <img src="https://cdn.discordapp.com/attachments/707687832239603863/1051578050095095908/ecraGPS.png" 
         width="650px" height="420px">
         
         <%}else{%>
-            <p class="lead">Where would you like to go?</p> 
+            <p class="lead" style="padding-left: 100px; ">Where would you like to go?</p> 
             <form id="destiny">
-                <label class="lead"for="destino">Destiny:</label>
-                <input type="text" id="destino"><br><br>
-                <label class="lead" for="fast">Rota:</label>
-                <label class="lead" for="fast">Fast</label>
-                <input type="radio" id="rota" name="fast" value="fast">
-                <label class="lead" for="economic">Economic</label>
-                <input type="radio" id="rota" name="economic" value="economic">
-                <label class="lead" for="less traffic">Less Traffic</label>
-                <input type="radio" id="rota" name="less traffic" value="less traffic">
-                <input type="submit" value="Submit">
+                <label class="lead"for="destino">Destiny:                       </label>
+                <input type="text" id="destino" style="transform: scale(2); margin-left: 100px; "><br><br>
+                <p><label class="lead" for="fast" style="transform: scale(2); ">Rota:</label></p>
+                <p><label class="lead" for="fast">Fast  </label>
+                <input type="radio" id="rota" name="fast" value="fast" style="transform: scale(2); "></p>
+                <p><label class="lead" for="economic">Economic  </label>
+                <input type="radio" id="rota" name="economic" value="economic" style="transform: scale(2); "></p>
+                <p><label class="lead" for="less traffic">Less Traffic  </label>
+                <input type="radio" id="rota" name="less traffic" value="less traffic" style="transform: scale(2);" >
+                <input type="submit" value="Submit" style="transform: scale(1.8);  margin-left: 500px;" ></p>
+               
               </form>
         <%}%>    
 
