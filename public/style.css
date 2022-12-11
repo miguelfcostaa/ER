@@ -271,3 +271,69 @@ body{
 p.action{
     color: white;
 }
+
+.botaoMenuPhone {
+    position: absolute;
+    right: 720px;
+    top: 332px;
+    opacity: 0;
+}
+
+.botaoMenuPhone:hover {
+    opacity: 1;
+}
+
+.botaoMenuGPS {
+    position: absolute;
+    right: 887px;
+    top: 484px;
+    opacity: 0;
+}
+
+.botaoMenuGPS:hover {
+    opacity: 1;
+}
+
+.botaoMenuCar {
+    position: absolute;
+    right: 720px;
+    top: 484px;
+    opacity: 0;
+}
+
+.botaoMenuCar:hover {
+    opacity: 1;
+}
+
+.botaoMenuSetup {
+    position: absolute;
+    right: 1051px;
+    top: 485px;
+    opacity: 0;
+}
+
+.botaoMenuSetup:hover {
+    opacity: 1;
+}
+
+.botaoMenuRadio {
+    position: absolute;
+    right: 1051px;
+    top: 332px;
+    opacity: 0;
+}
+
+.botaoMenuRadio:hover {
+    opacity: 1;
+}
+
+.botaoMenuMedia {
+    position: absolute;
+    right: 887px;
+    top: 332px;
+    opacity: 0;
+}
+
+.botaoMenuMedia:hover {
+    opacity: 1;
+}
