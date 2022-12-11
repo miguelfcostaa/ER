@@ -35,6 +35,7 @@ router.post('/ecraPrincipal/wifi',controller.ecraPrincipalWifi_post);
 router.get('/ecraVolante/voiceRecognition/check',controller.ecraVolanteCheck_get);
 router.get('/ecraVolante/triggerChamada',controller.triggerChamada_get);
 router.post('/ecraVolante/triggerChamada',controller.triggerChamada_post);
+router.get('/ecraPrincipal/calendario',controller.ecraPrincipalCalendario_get);
 
 module.exports = router;
 
