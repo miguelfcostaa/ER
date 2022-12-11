@@ -229,6 +229,14 @@ body{
     
 }
 
+#dp {
+    right: 200px;
+    top: 250px;
+    height: 100px;
+
+    
+}
+
 .ecra-volante {
     position: absolute;
     right: 890px;
@@ -253,6 +261,12 @@ body{
 .lead{
     color: white;
 }
+
+.calendar_default_main{
+    width: 100%;
+    left: 160px;
+}
+
 
 p.action{
     color: white;

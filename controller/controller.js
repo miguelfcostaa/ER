@@ -264,6 +264,10 @@ const triggerChamada_post = (req,res) => {
     }
 }
 
+const ecraPrincipalCalendario_get = (req,res) =>{
+    res.render('ecraPrincipalCalendario');
+}
+
 module.exports = {
     ecraPrincipal_get,
     ecraVolante_get,
@@ -291,6 +295,7 @@ module.exports = {
     ecraPrincipalWifi_post,
     ecraVolanteCheck_get,
     triggerChamada_get,
-    triggerChamada_post
+    triggerChamada_post,
+    ecraPrincipalCalendario_get
 
 }
