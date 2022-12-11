@@ -37,9 +37,19 @@ const ecraPrincipalSetupCompleto_get = (req,res) =>{
     res.render('ecraPrincipalSetupCompleto');
 };
 
-const ecraPrincipalGPS_get = (req,res) =>{  
-    res.render('ecraPrincipalGPS');
+const ecraPrincipalGPS_get = (req,res) =>{
+    const cookies = req.cookies;
+    console.log('COOKIE UP: ',cookies);
+    res.render('ecraPrincipalGPS',{user:cookies});
 };
+
+const ecraPrincipalGPS_post = (req,res) =>{
+    const{destino,rota} = req.body;
+    res.cookie('destino',destino);
+    res.cookie('rota',rota);
+    res.render('ecraPrincipal');
+
+}
 
 const ecraPrincipalCar_get = (req,res) =>{  
     res.render('ecraPrincipalCar');
@@ -199,9 +209,6 @@ const mustBeConnected_get = (req,res) => {
 }
 
 
-const ecraPrincipalGps_get = (req,res) => {
-    res.render('ecraPrincipalGPS');
-}
 
 const ecraVolanteGPS_get = (req,res) => {
     const destino = req.cookies;
@@ -302,6 +309,7 @@ module.exports = {
     triggerChamada_get,
     triggerChamada_post,
     ecraPrincipalCalendario_get,
-    ecraMarchaAtras_get
+    ecraMarchaAtras_get,
+    ecraPrincipalGPS_post
 
 }
