@@ -12,7 +12,7 @@ body{
 }
 
 .background_ecraPrincipal {
-    background-image: url('https://cdn.discordapp.com/attachments/1026128172477059122/1050075332989952101/ecraPrincipal_Zoom.png');
+    background-image: url('https://cdn.discordapp.com/attachments/707687832239603863/1051633208803999744/ecraPrincipal_Zoom.png');
     background-size: 215vh;
     background-position: center;
     height: 100vh;
@@ -347,4 +347,15 @@ p.action{
 
 .ecramarchaatras:hover {
     opacity: 1; 
+}
+
+.botaoWIFI {
+    position: absolute;
+    left: 360px;
+    top: 420px;
+    opacity: 0;
+}
+
+.botaoWIFI:hover {
+    opacity: 1;
 }
