@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/707687832239603863/1048573000548618360/classic_car.png">
+    <title> Sistema Infotainment </title>
+
+</head>
+
+<body class="background_ecraVolante">
+    <img src='https://cdn.discordapp.com/attachments/707687832239603863/1049440866693025933/goback.png' class="goBack" 
+    width='100px' height='100px' onclick="location.href='/ecraVolante'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049445554796625991/botaoChamada.png" class="botaoChamada" 
+    width="180px" height="120px" onclick="location.href='/ecraVolante/chamada'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049445555312541836/botaoVoice.png" class="botaoVoice" 
+    width="180px" height="120px" onclick="location.href='/ecraVolante/voiceRecognition'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049450279021584414/botaoSetaCima.png" class="botaoSetaCima" 
+    width="180px" height="120px" onclick="location.href='/ecraVolante/'"> <!--falta preencher o que faz ao clicar na seta para cima-->
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049450279474565191/botaoSetaBaixo.png" class="botaoSetaBaixo" 
+    width="170px" height="110px" onclick="location.href='/ecraVolante/'"> <!--falta preencher o que faz ao clicar na seta para baixo-->
+
+    <div class="ecra-volante">
+       
+    </div>
+
+
+    <script>
+
+        const ecra = document.querySelector('.ecra-volante');
+        
+                console.log('VOLTEI');
+                //location.reload();
+                
+
+                const cookieValueUser = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('user='))
+                    ?.split('=')[1];
+                
+
+                const cookieValueContacto = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('contacto='))
+                    ?.split('=')[1];
+                
+
+                const cookieValueUserAcao = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('acao='))
+                    ?.split('=')[1];
+                
+                const cookieValueUserRadio = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('radio='))
+                    ?.split('=')[1];    
+
+                
+                console.log('COOKIE ACAO TESTE: ', cookieValueUserAcao);
+                console.log('COOKIE User TEST: ',cookieValueUser);
+                console.log('COOKIE Contacto TEST: ',cookieValueContacto);
+                console.log('COOKIE Gps TEST: ',cookieValueUserAcao);
+                
+                if(cookieValueUserAcao == 'call'){
+                    if(cookieValueUser != undefined){
+                        if(cookieValueContacto == undefined){
+                            location.assign('/ecraVolante');
+                        }else if(cookieValueContacto != undefined){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'You are already on a call!';
+                            ecra.appendChild(p);
+                        }
+                    }else if(cookieValueUser == undefined){
+                        location.assign('/ecraVolante/mustBeConnected');
+                    }
+                }
+                else if(cookieValueUserAcao == 'GPS'){
+                    location.assign('/ecraVolante/ecraVolanteGPS');
+                }
+                else if(cookieValueUserAcao == 'radio'){
+                    if(cookieValueUserRadio == 'on'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Radio turned on!';
+                            ecra.appendChild(p);
+                    }else if(cookieValueUserRadio == 'off'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Radio turned off!';
+                            ecra.appendChild(p);
+                            location.assign('/ecraVolante');                     
+                    }
+                }
+                else if(cookieValueUserAcao == 'unknown'){
+                    p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Unknown command!';
+                            ecra.appendChild(p);
+                }
+                else if(cookieValueUserAcao == 'connect'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Welcome, ' + cookieValueUser ;
+                            ecra.appendChild(p);
+                }
+                else if(cookieValueUserAcao == 'connectChange'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Changing current user... ' + 'Welcome, ' + cookieValueUser ;
+                            ecra.appendChild(p);
+                }
+                else if(cookieValueUserAcao == 'disconnect'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Current user disconnected!';
+                            ecra.appendChild(p);
+                }
+                else if(cookieValueUserAcao == 'NonDisconnect'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'There is no user to disconnect!';
+                            ecra.appendChild(p);
+                }
+                else if(cookieValueUserAcao == 'disconnectNot'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'That user is not connected!';
+                            ecra.appendChild(p);
+                }
+                
+       
+    </script>
+
+</body>
+
+</html>

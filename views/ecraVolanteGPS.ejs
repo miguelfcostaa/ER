@@ -22,91 +22,126 @@
     <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049450279474565191/botaoSetaBaixo.png" class="botaoSetaBaixo" 
     width="170px" height="110px" onclick="location.href='/ecraVolante/'"> <!--falta preencher o que faz ao clicar na seta para baixo-->
 
-    <div class="ecra-listenning">
-        <h4 class="lead">Where would you like to go?</h4>
+    <div class="ecra-volante">
+        <h4 class="lead" id="whereW">Where would you like to go?</h4>
     </div>
 
 
     <script>
+        const ecra = document.querySelector('.ecra-volante');
+        const whereW = document.querySelector('#whereW');
+        console.log('WHERE: ', whereW);
+
+        const cookieValueDesino = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('destino='))
+                    ?.split('=')[1];
+
+        const cookieValueRota = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('rota='))
+                    ?.split('=')[1];            
+
+        if(cookieValueDesino != undefined){
+            whereW.remove();
+            rotaEmCurso = document.createElement('p');
+                rotaEmCurso.classList.add('lead');
+                rotaEmCurso.innerText = 'Route is alrady in course! ';
+            rotaEmCursoD = document.createElement('p');
+                rotaEmCursoD.classList.add('lead');
+                rotaEmCursoD.innerText = 'Destination: ' + cookieValueDesino + ' Route: ' + cookieValueRota;    
+                ecra.appendChild(rotaEmCurso);
+                ecra.appendChild(rotaEmCursoD);
+
+        }else{
+
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const ecra = document.querySelector('.ecra-listenning');
+        
         const recognition = new window.SpeechRecognition();
         recognition.interimResults = true;
         recognition.continuous = false;
         recognition.lang = 'en-US';
+        iteration = 0;
 
-        var recognizing = true;
-
-        recognition.onstart = function () {
-            recognizing = true;
-        };
-
-        recognition.onend = function () {
-            recognizing = false;
-        };
 
         recognition.addEventListener('result', (e) =>{
-            const destino = Array.from(e.results)
+
+            console.log('INTERATION: ', iteration);
+
+            if(iteration == 0){
+            destino = Array.from(e.results)
                 .map(result => result[0])
                 .map(result => result.transcript)
                 .join('');
 
             console.log('DESTINO: ', destino);
 
-            recognition.stop();
-            setTimeout(function(){ recognition.start(); }, 4000);
-
-            const rotaU = Array.from(e.results)
+            }else if(iteration == 1){
+            rotaU = Array.from(e.results)
                 .map(result => result[0])
                 .map(result => result.transcript)
                 .join('');
 
             console.log('ROTAU: ', rotaU);    
+            }
 
-            })        
+                   
         
 
        if(e.results[0].isFinal){
-        //if(command.includes('call')){
-            p = document.createElement('p');
-            p.classList.add('lead');
-            p.innerText = 'Answer: ' + destino;
-            ecra.appendChild(p);
-            rota = document.createElement('p');
-            rota.classList.add('lead');
-            rota.innerText = 'Route:fast, economic or less trafic?'
-            ecra.appendChild(rota);
 
-           
+            if(iteration == 0){
+                p = document.createElement('p');
+                p.classList.add('lead');
+                p.innerText = 'Answer: ' + destino;
+                ecra.appendChild(p);
+                rota = document.createElement('p');
+                rota.classList.add('lead');
+                rota.innerText = 'Route:fast, economic or less trafic?'
+                ecra.appendChild(rota);
+                console.log('DESTINO: ',destino);
+            }
+            if(iteration == 1){
+                rota.remove();
+                tipoRota = document.createElement('p');
+                tipoRota.classList.add('lead');
+                tipoRota.innerText = 'Route Type: ' + rotaU;
+                ecra.appendChild(tipoRota);
+                console.log('ROTAU: ',rotaU);
+                recognition.stop();
+                iteration = 2;
+            }
 
-            console.log('DESTINO: ',destino);
-            console.log('ROTAU: ',rotaU);
-            recognizing = false;
+            if(iteration == 2){
             
-        }
-            recognition.stop();
-
-        
-       //}
-   
-
-        recognition.start();
-
-        if( recognizing == false ){
-        try{
+                try{
                     const res = fetch('http://localhost:3000/ecraVolante/ecraVolanteGPS',{
-                        method: 'POST',
-                        body: JSON.stringify({destino,rotaU}),
-                        headers:{'Content-Type': 'application/json'}
+                    method: 'POST',
+                    body: JSON.stringify({destino,rotaU}),
+                    headers:{'Content-Type': 'application/json'}
                     });
                 }catch(err){
                     console.log(err);
                 }
                 console.log('VOLTEI');
-        }
-
         
+        
+            }
+       }
+    }) 
+
+    recognition.addEventListener('end',() => {
+        if(iteration == 2){
+            recognition.stop();
+        }else{
+        iteration=1;
+        recognition.start();
+        }
+    })
+
+        recognition.start();
+}
     </script>
 
 </body>

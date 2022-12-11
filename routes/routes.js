@@ -32,6 +32,9 @@ router.get('/ecraVolante/ecraVolanteGPS',controller.ecraVolanteGPS_get);
 router.post('/ecraVolante/ecraVolanteGPS',controller.ecraVolanteGPS_post);
 router.get('/ecraPrincipal/wifi',controller.ecraPrincipalWifi_get);
 router.post('/ecraPrincipal/wifi',controller.ecraPrincipalWifi_post);
+router.get('/ecraVolante/voiceRecognition/check',controller.ecraVolanteCheck_get);
+router.get('/ecraVolante/triggerChamada',controller.triggerChamada_get);
+router.post('/ecraVolante/triggerChamada',controller.triggerChamada_post);
 
 module.exports = router;
 

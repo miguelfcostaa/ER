@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/707687832239603863/1048573000548618360/classic_car.png">
+    <title> Sistema Infotainment </title>
+
+</head>
+
+<body class="background_ecraVolante">
+    <img src='https://cdn.discordapp.com/attachments/707687832239603863/1049440866693025933/goback.png' class="goBack" 
+    width='100px' height='100px' onclick="location.href='/'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049445555312541836/botaoVoice.png" class="botaoVoice" 
+    width="180px" height="120px" onclick="location.href='/ecraVolante/voiceRecognition'">
+    <img src="https://cdn.discordapp.com/attachments/707687832239603863/1049445554796625991/botaoChamada.png" class="botaoChamada" 
+        width="180px" height="120px" >
+
+
+    <form id="pickup">
+    <button type="submit" name="pick" value="yes" onclick='storeVar(this)' ><img src="https://cdn.discordapp.com/attachments/707687832239603863/1049450279021584414/botaoSetaCima.png" class="botaoSetaCima" 
+        width="180px" height="120px" onclick="location.href='/ecraVolante/triggerChamada'"> <!--falta preencher o que faz ao clicar na seta para cima-->
+    </button>
+    <button type="submit" name="pick" value="no" onclick='storeVar(this)' ><img src="https://cdn.discordapp.com/attachments/707687832239603863/1049450279474565191/botaoSetaBaixo.png" class="botaoSetaBaixo" 
+        width="170px" height="110px" onclick="location.href='/ecraVolante/'"> <!--falta preencher o que faz ao clicar na seta para baixo-->
+    </button>
+    </form>
+    
+    <div class="ecra-volante">
+        <%if(user.user){%>
+        <h3 class="lead" id="whereW">Receiving call from James...</h3>
+        
+        <%}else{%>
+            
+        <%}%>
+    </div>
+
+</body>
+
+<script>
+    const ecra = document.querySelector('.ecra-volante');
+    const whereW = document.querySelector('#whereW');
+            function storeVar(el) {
+                amount = el.getAttribute('value'); 
+
+                console.log(amount);
+            } 
+
+                const form = document.getElementById('pickup');
+
+                form.addEventListener('submit', async(e) =>{
+                e.preventDefault();
+    
+                try{
+                    const res = await fetch('http://localhost:3000/ecraVolante/triggerChamada',{
+                        method: 'POST',
+                        body: JSON.stringify({amount}),
+                        headers:{'Content-Type': 'application/json'}
+                    });
+                    const data = await res.json();
+                    console.log('DATA: ',data);
+                }catch(err){
+                    console.log(err);
+                }
+
+            }); 
+
+            const cookieValueUserAcao = document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith('acao='))
+                    ?.split('=')[1];
+
+            if(cookieValueUserAcao == 'whellPickUp'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'In call with James!';
+                            whereW.remove();
+                            ecra.appendChild(p);
+            }
+            else if(cookieValueUserAcao == 'whellHangUp'){
+                            p = document.createElement('p');
+                            p.classList.add('lead');
+                            p.innerText = 'Call rejected!';
+                            whereW.remove();
+                            ecra.appendChild(p);
+            }
+
+
+</script>
+
+</html>

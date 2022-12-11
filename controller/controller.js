@@ -112,6 +112,7 @@ const endSession_post = (req,res) => {
 
 const voiceRecognition_get=(req,res) => {
     const user = req.cookies;
+    console.log('USERCOOKIES: ', user);
     res.render('voiceRecognition',{user:user});
 }
 
@@ -120,27 +121,75 @@ const voiceRecognition_post = (req,res) => {
     const{command} = req.body;
     const myArray = command.split(" ");
     console.log('COMANDO: ', myArray[0]);
+    console.log('contacto: ', myArray[1]);
     console.log('USER: ', user.user);
+    console.log('CONTACTO: ', user.contacto);
+
     if(myArray[0] == 'call'){
         if(user.user!=undefined){
-        res.cookie('contacto',myArray[1]);
-        res.cookie('acao', myArray[0]);
-        //res.status(201).json({user:myArray[1]});
-        //res.redirect(301, 'http://localhost:3000/ecraVolante')
-        res.redirect('/ecraVolante')
+            
+            res.cookie('contacto',myArray[1]);
+            res.cookie('acao', myArray[0]);
+            res.redirect('/ecraVolante')
         }
         else if(user.user == undefined){
-            //res.json('User must be connected!');
-            console.log('ERRO:');
-            res.redirect('/ecraVolante');
+            res.cookie('contacto',myArray[1]);
+            res.cookie('acao', myArray[0]);
+            res.status(301).json('User not connected');
             
         }
     }else if(myArray[0] == 'GPS'){
-        console.log('Entrou GPS');
-        res.cookie('acao', myArray[0]);
-        res.redirect('/ecraVolante');
+        if(myArray[1] == 'start'){
+            console.log('Entrou GPS');
+            res.cookie('acao', myArray[0]);
+            res.redirect('/ecraVolante');
+        }else if(myArray[1] == 'finish'){
+            res.cookie('rota','',{maxAge:1});
+            res.cookie('destino','',{maxAge: 1});
+            res.cookie('acao','',{maxAge:1});
+            res.redirect('/ecraVolante');
+        }
+        
     }else if(myArray[0] == 'radio'){
-        res.cookie('acao','radio');
+        if(myArray[1] == 'on'){
+            res.cookie('acao','radio');
+            res.cookie('radio','on');
+            res.redirect('/ecraVolante');
+        }else if(myArray[1] == 'off'){
+            res.cookie('acao','radio');
+            res.cookie('radio','',{maxAge: 1});
+            res.redirect('/ecraVolante');
+        }
+            
+    }else if(myArray[0] == 'connect'){
+        if(user.user == undefined){
+            res.cookie('user', myArray[1]);
+            res.cookie('acao','connect');
+            res.redirect('/ecraVolante');
+        }else if(user.user != undefined){
+            res.cookie('user', myArray[1]);
+            res.cookie('acao','connectChange');
+            res.redirect('/ecraVolante');
+        }
+        
+    }else if(myArray[0] == 'disconnect'){
+        if(user.user == undefined){
+            res.cookie('acao','NonDisconnect');
+            res.redirect('/ecraVolante');
+        }else if(user.user != undefined){
+            if(myArray[1] == user.user){
+                res.cookie('user', '',{maxAge:1});
+                res.cookie('acao','disconnect');
+                res.redirect('/ecraVolante');
+            }
+            else if(myArray[1] != user.user){
+                res.cookie('acao','disconnectNot');
+                res.redirect('/ecraVolante');
+            }
+        }
+    }else{
+        res.cookie('acao','unknown');
+        res.redirect('/ecraVolante');
     }
     
 }
@@ -155,14 +204,23 @@ const ecraPrincipalGps_get = (req,res) => {
 }
 
 const ecraVolanteGPS_get = (req,res) => {
-    res.render('ecraVolanteGPS');
+    const destino = req.cookies;
+    console.log('DESTINOCOOKIE: ', destino);
+    res.render('ecraVolanteGPS',{destino:destino});
+    
 }
 
 const ecraVolanteGPS_post = (req,res) => {
+    const destinoStatus = req.cookies;
     const {destino,rotaU} = req.body;
     console.log('DESTINO: ', destino);
     console.log('Rota: ', rotaU);
-
+    console.log('------------------------------------------------------');
+    console.log('DESTINOSTATUS: ',destinoStatus);
+    res.cookie('destino',destino);
+    res.cookie('rota',rotaU);
+    res.redirect('/ecraVolante')
+    
 }
 
 const ecraPrincipalWifi_get = (req,res) => {
@@ -181,6 +239,29 @@ const ecraPrincipalWifi_post = (req, res) => {
         res.redirect('/ecraPrincipal/wifi');
     }    
 
+}
+
+const ecraVolanteCheck_get = (req,res) => {
+    res.render('voiceRecognitionCheck');
+}
+
+const triggerChamada_get = (req,res) =>{
+    const cookies = req.cookies;
+    res.render('ecraVolanteTriggerChamada',{user:cookies});
+}
+
+const triggerChamada_post = (req,res) => {
+    const {amount} = req.body;
+    console.log('RESPOSTA CHAMADA: ', amount);
+    if(amount == 'yes'){
+        res.cookie('contacto','James');
+        res.cookie('acao','whellPickUp')
+        res.redirect('/ecraVolante');
+    }else if(amount=='no'){
+        res.cookie('acao','',{maxAge:1})
+        res.cookie('contacto','',{maxAge:1});
+        res.redirect('/ecraVolante');
+    }
 }
 
 module.exports = {
@@ -207,6 +288,9 @@ module.exports = {
     ecraVolanteGPS_get,
     ecraVolanteGPS_post,
     ecraPrincipalWifi_get,
-    ecraPrincipalWifi_post
+    ecraPrincipalWifi_post,
+    ecraVolanteCheck_get,
+    triggerChamada_get,
+    triggerChamada_post
 
 }

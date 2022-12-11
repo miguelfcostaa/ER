@@ -30,7 +30,7 @@
     <script>
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const ecra = document.querySelector('.ecra-listenning');
+        const ecra = document.querySelector('.ecra-volante');
         const recognition = new window.SpeechRecognition();
         recognition.interimResults = true;
         recognition.continuous = false;
@@ -46,12 +46,10 @@
         
 
        if(e.results[0].isFinal){
-        //if(command.includes('call')){
             p = document.createElement('p');
             p.classList.add('action');
             p.innerText = command;
             ecra.appendChild(p);
-        //}
 
         try{
                     const res = fetch('http://localhost:3000/ecraVolante/voiceRecognition',{
@@ -63,8 +61,9 @@
                     console.log(err);
                 }
                 console.log('VOLTEI');
-                location.assign('/ecraVolante');
-
+                location.assign('/ecraVolante/voiceRecognition/check');
+                
+/*
                 const cookieValueUser = document.cookie
                     .split('; ')
                     .find((row) => row.startsWith('user='))
@@ -82,7 +81,7 @@
                     .find((row) => row.startsWith('acao='))
                     ?.split('=')[1];
                 
-
+                console.log('COOKIE ACAO TESTE: ', cookieValueUserAcao);
                 console.log('COOKIE User TEST: ',cookieValueUser);
                 console.log('COOKIE Contacto TEST: ',cookieValueContacto);
                 console.log('COOKIE Gps TEST: ',cookieValueUserAcao);
@@ -97,6 +96,7 @@
                 if(cookieValueUserAcao == 'GPS'){
                     location.assign('/ecraVolante/ecraVolanteGPS');
                 }
+                */
        }
     })
 
