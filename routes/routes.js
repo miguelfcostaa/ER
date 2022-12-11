@@ -7,6 +7,7 @@ router.get('/ecraPrincipal',controller.ecraPrincipal_get);
 router.get('/ecraPrincipal/radio',controller.ecraPrincipalRadio_get);
 router.get('/ecraPrincipal/media',controller.ecraPrincipalMedia_get);
 router.get('/ecraPrincipal/gps',controller.ecraPrincipalGPS_get);
+router.post('/ecraPrincipal/gps',controller.ecraPrincipalGPS_post);
 router.get('/ecraPrincipal/phone',controller.ecraPrincipalPhone_get);
 router.post('/ecraPrincipal/phone',controller.ecraPrincipalPhone_post);
 router.get('/ecraPrincipal/contactos',controller.ecraPrincipalContactos_get);

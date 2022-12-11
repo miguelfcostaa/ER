@@ -33,10 +33,60 @@
     width="217px" height="110px" onclick="location.href='/ecraPrincipal/menu'">
 
     <div class="ecra">
+        <% if(user.destino){ %>    
+            <p class="lead" style="position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);">Current destination: <%=user.destino%></p>
+            <p class="lead" style="position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);">Current Route: <%=user.rota%></p>
         <img src="https://cdn.discordapp.com/attachments/707687832239603863/1051578050095095908/ecraGPS.png" 
         width="650px" height="420px">
+        
+        <%}else{%>
+            <p class="lead">Where would you like to go?</p> 
+            <form id="destiny">
+                <label class="lead"for="destino">Destiny:</label>
+                <input type="text" id="destino"><br><br>
+                <label class="lead" for="fast">Rota:</label>
+                <label class="lead" for="fast">Fast</label>
+                <input type="radio" id="rota" name="fast" value="fast">
+                <label class="lead" for="economic">Economic</label>
+                <input type="radio" id="rota" name="economic" value="economic">
+                <label class="lead" for="less traffic">Less Traffic</label>
+                <input type="radio" id="rota" name="less traffic" value="less traffic">
+                <input type="submit" value="Submit">
+              </form>
+        <%}%>    
 
     </div>
 </body>
+<script>
+    const form = document.getElementById('destiny');
+    
+form.addEventListener('submit', async(e) =>{
+    e.preventDefault();
+    const destino = document.getElementById('destino').value;
+    const rota = document.getElementById('rota').value;
+    console.log('Destino: ', destino);
+    console.log('Rota: ', rota);
+
+    try{
+        const res = await fetch('http://localhost:3000/ecraPrincipal/gps',{
+            method: 'POST',
+            body: JSON.stringify({destino,rota}),
+            headers:{'Content-Type': 'application/json'}
+        });
+        const data = await res.json();
+        console.log('DATA: ',data);
+    }catch(err){
+        console.log(err);
+    }
+    location.assign('/ecraPrincipal');
+
+});
+</script>
 
 </html>
