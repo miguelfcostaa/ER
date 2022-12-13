@@ -312,6 +312,7 @@ module.exports = {
     triggerChamada_get,
     triggerChamada_post,
     ecraPrincipalCalendario_get,
-    ecraMarchaAtras_get
+    ecraMarchaAtras_get,
+    ecraPrincipalGPS_post
 
 }

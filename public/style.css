@@ -221,13 +221,26 @@ body{
     position: absolute;
     right: 630px;
     top: 250px;
-    background: black;
+    background: rgb(0, 0, 0);
     padding: 15px;
     border-radius: 3px;
     height: 420px;
     width: 650px;
     
 }
+
+.ecra-preto {
+    position: absolute;
+    right: 630px;
+    top: 250px;
+    background: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 3px;
+    height: 420px;
+    width: 650px;
+    
+}
+
 
 #dp {
     right: 200px;
