@@ -282,6 +282,11 @@ const ecraMarchaAtras_get = (req,res) => {
     res.render('ecraMarchaAtras');
 }
 
+const ecraPrincipalMenu2_get = (req,res) => {
+    res.render('ecraPrincipalMenu2');
+}
+
+
 
 module.exports = {
     ecraPrincipal_get,
@@ -294,6 +299,7 @@ module.exports = {
     ecraPrincipalGPS_get,
     ecraPrincipalCar_get,
     ecraPrincipalMenu_get,
+    ecraPrincipalMenu2_get,
     ecraPrincipalSetupCompleto_get,
     ecraPrincipalContactos_get,
     ecraChamada_get,

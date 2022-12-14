@@ -13,6 +13,7 @@ router.post('/ecraPrincipal/phone',controller.ecraPrincipalPhone_post);
 router.get('/ecraPrincipal/contactos',controller.ecraPrincipalContactos_get);
 router.get('/ecraPrincipal/chamada',controller.ecraChamada_get);
 router.get('/ecraPrincipal/menu',controller.ecraPrincipalMenu_get);
+router.get('/ecraPrincipal/menu2',controller.ecraPrincipalMenu2_get);
 router.get('/ecraPrincipal/car',controller.ecraPrincipalCar_get);
 router.post('/ecraPrincipal/contactos',controller.ecraPrincipalContactos_post);
 router.post('/ecraPrincipal/chamada', controller.ecraChamada_post);
@@ -38,6 +39,8 @@ router.get('/ecraVolante/triggerChamada',controller.triggerChamada_get);
 router.post('/ecraVolante/triggerChamada',controller.triggerChamada_post);
 router.get('/ecraPrincipal/calendario',controller.ecraPrincipalCalendario_get);
 router.get('/ecraPrincipal/MarchaAtras',controller.ecraMarchaAtras_get);
+
+
 
 module.exports = router;
 
