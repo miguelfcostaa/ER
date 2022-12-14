@@ -209,6 +209,9 @@ const mustBeConnected_get = (req,res) => {
 }
 
 
+const ecraPrincipalGps_get = (req,res) => {
+    res.render('ecraPrincipalGPS');
+}
 
 const ecraVolanteGPS_get = (req,res) => {
     const destino = req.cookies;

@@ -67,12 +67,12 @@
                     if(cookieValueUser != undefined){
                         if(cookieValueContacto == undefined){
                             location.assign('/ecraVolante');
-                        }else if(cookieValueContacto != undefined){
+                        }//else if(cookieValueContacto != undefined){
                             p = document.createElement('p');
                             p.classList.add('lead');
-                            p.innerText = 'You are already on a call!';
+                            p.innerText = 'You are on a call with ' + cookieValueContacto;
                             ecra.appendChild(p);
-                        }
+                        //}
                     }else if(cookieValueUser == undefined){
                         location.assign('/ecraVolante/mustBeConnected');
                     }

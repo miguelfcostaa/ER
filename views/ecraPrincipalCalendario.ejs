@@ -8,35 +8,153 @@
     <link rel="icon" href="https://cdn.discordapp.com/attachments/707687832239603863/1048573000548618360/classic_car.png">
     <title> Sistema Infotainment </title>
 
-    <script src="scripts/daypilot-all.min.js" type="text/javascript"></script>
-    <link type="text/css" rel="stylesheet" href="themes/calendar_white.css" />
+    <link href='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.css' rel='stylesheet' />
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link href='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script>
+<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script>
+<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min
+.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script src="https://javascript.daypilot.org/demo/lite/helpers/jquery-1.9.1.min.js" type="text/javascript"></script>
+<link href='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css' rel='stylesheet' />
+
+
+  <link href='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css' rel='stylesheet' />
+
+
+
+<script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
+
+
+
+
+  <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
+
+<style>
+  #calendar {
+    position: absolute;
+    top: 5px;
+    left: 70px;  
+    width:490px;
+    height:330px;
+  }
+  
+  .hoverEffect {
+    font-size: 29px;
+    position: absolute;
+    margin: 30px 55px;
+    cursor: pointer;
+}
+.ui-datepicker-trigger
+{
+  background: transparent;
+    border: none;
+    margin: 0!important;
+    padding: 0!important;
+}
+.datetimepicker .input-group-addon {
+    background-color: #f9f9f9;
+    border-radius: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    height: 2.1em;
+    border: 1px solid #ccc;
     
-	<!-- daypilot libraries -->
-        <script src="https://javascript.daypilot.org/demo/lite/js/daypilot-all.min.js?v=130" type="text/javascript"></script>
+}
+.fc-state-default.fc-corner-right
+{
+  border-radius: 0px;
+}
 
-        <!-- daypilot themes -->
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/areas.css?v=130" />    
+.h2, h2 {
+     font-size: 20px; 
+}
+
+</style>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      height: 400,
+  aspectRatio: 2,
+      plugins: [ 'dayGrid' ],
+      defaultView: 'dayGridMonth',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,addEventButton'
+      },
+      customButtons: {
+        addEventButton: {
+          text: 'add event...',
+          click: function() {
+            var valor = prompt('Enter the name of the event: ');
+            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+            if (!isNaN(date.valueOf())) { // valid?
+              calendar.addEvent({
+                title: valor,
+                start: date,
+                allDay: true
+              });
+            } else {
+              alert('Invalid date.');
+            }
+          }
+        }
+      },
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+           events: [
+        {
+          title: 'All Day Event',
+          start: '2022-12-11',
+           backgroundColor:'red'
+        },
+        {
+          title: 'Special Event',
+          start: '2022-12-11',
+          end: '2022-12-11',
+          backgroundColor:'green'
+        },
         
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/month_white.css?v=130" />    
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/month_green.css?v=130" />    
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/month_transparent.css?v=130" />    
-        
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/calendar_transparent.css?v=130" />    
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/calendar_white.css?v=130" />    
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/calendar_green.css?v=130" />    
-
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/navigator_green.css?v=130" />    
-	<link type="text/css" rel="stylesheet" href="https://javascript.daypilot.org/demo/lite/themes/navigator_white.css?v=130" />    
-
+      ],
+      eventClick: function(calEvent, jsEvent, view, resourceObj) {
+          swal({
+            title: calEvent.title,
+            text: "Start From : "+moment(calEvent.start).format("MMMM Do YYYY, h:mm a"),
+            icon: "success",
+          });
+      },
+      eventRender: function(info) {
+      $(info.el).append("<span class='removebtn'>X</span>");
+      $(info.el).find(".removebtn").click(function() {
+        info.event.remove();
+      });
+    },
     
     
-    <style>
-        
-    </style>
+
+    });
+
+    calendar.render();
+  });
+
+</script>
+
+
 </head>
-
 
 <body class="background_ecraPrincipal">
     <img src='https://cdn.discordapp.com/attachments/707687832239603863/1049440866693025933/goback.png' class="goBack" 
@@ -60,26 +178,9 @@
     <img src="https://cdn.discordapp.com/attachments/707687832239603863/1050123259888275566/botao_MENU.png" class="botaoMENU"
     width="217px" height="110px" onclick="location.href='/ecraPrincipal/menu'">
 
-    
-    <div id="dp"></div>
-<script>
-    const dp = new DayPilot.Calendar("dp", {
-    viewType: "Month"
-  });
-  dp.startDate = new DayPilot.Date("2022-12-11").firstDayOfMonth();
-  dp.events.list = [
-    {
-      "start": "2023-01-02T10:30:00",
-      "end": "2023-01-02T13:30:00",
-      "id": "225eb40f-5f78-b53b-0447-a885c8e92233",
-      "text": "Calendar Event 1"
-    },
-    
-  ];
-  dp.theme = "month_white";
-  dp.cellWidthSpec = "Auto";
-  dp.init();
-    </script>
+    <div class="ecra-preto">
+        <div id='calendar' ></div>
+    </div>
 
 </body>
 
