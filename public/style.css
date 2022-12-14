@@ -335,6 +335,52 @@ p.action{
     opacity: 1;
 }
 
+
+.botaoSeta {
+    position: absolute;
+    right: 648px;
+    top: 448px;
+    opacity: 0;
+}
+
+.botaoSeta:hover {
+    opacity: 1;
+}
+
+.botaoSeta2 {
+    position: absolute;
+    right: 1204px;
+    top: 450px;
+    opacity: 0;
+}
+
+.botaoSeta2:hover {
+    opacity: 1;
+}
+
+.botaoWi-fi {
+    position: absolute;
+    right: 998px;
+    top: 411px;
+    opacity: 0;
+}
+
+.botaoWi-fi:hover {
+    opacity: 1;
+}
+
+.botaoCalendario {
+    position: absolute;
+    right: 777px;
+    top: 408px;
+    opacity: 0;
+}
+
+.botaoCalendario:hover {
+    opacity: 1;
+}
+
+
 .botaoMenuRadio {
     position: absolute;
     right: 1051px;
